@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      #wrapper {
+        width: 650px;
+        height: 120px;
+        background: navy;
+
+        margin: 150px auto 0;
+        box-sizing: border-box;
+        border-radius: 10px;
+        box-shadow: 4px 4px 20px rgba(0, 0, 128, 0.705);
+
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        color: white;
+      }
+      #wrapper input {
+        width: 100px;
+        height: 30px;
+        margin: 0 10px 0 30px;
+        padding-left: 10px;
+
+        outline: none;
+      }
+      #wrapper input#t_h {
+        margin: 0 10px 0 0;
+      }
+      #wrapper button {
+        position: absolute;
+        left: 50%;
+        bottom: -70px;
+        transform: translateX(-50%);
+
+        width: 100px;
+        height: 32px;
+      }
+    </style>
+    <script>
+      let sec = 0; // 초가 누적될 전역변수
+      let min = 0; // 분이 누적될 전역변수
+      let hour = 0; // 시가 누적될 전역변수
+      let flag = false; // 시계를 동작할지 여부를결정짓는 변수
+
+      function showTime() {
+        // 시, 분, 초 값을 증가시킨다
+        let t_h = document.getElementById("t_h");
+        let t_m = document.getElementById("t_m");
+        let t_s = document.getElementById("t_s");
+
+        if (flag) {
+          sec++;
+
+          if (sec >= 60) {
+            sec = 0;
+            min++;
+          }
+          if (min >= 60) {
+            min = 0;
+            hour++;
+          }
+        }
+        t_s.value = sec;
+        t_m.value = min;
+        t_h.value = hour;
+
+        // setInterval("함수" , 시간간격)은 지정된 시간 간격으로, 지정한 함수를 무한호출
+        // setTimeout("함수" , 시간간격)은 지정된 시간이 지난후, 지정한 함수를 오직 1회만 호출
+        // 재기호출시 이용할수있다...
+        // setTimeout("start()", 1);
+      }
+
+      function start() {
+        setInterval("showTime()", 1000);
+      }
+      // 버튼을 누를때마다 flag의 상태 뒤집기
+      // 버튼을 누를때마다 버튼이 제목도 뒤집기
+      function effect() {
+        flag = !flag;
+        if (flag) {
+          // 시계가 작동라고 있으므로, stop 보여줌
+          document.getElementById("bt").innerText = "Stop";
+        } else {
+          document.getElementById("bt").innerText = "Start";
+        }
+      }
+    </script>
+
+    <!-- <script>
+      addEventListener("load", function () {
+        const wrapper = document.getElementById("wrapper");
+        const t_h = document.getElementById("t_h");
+        const t_m = document.getElementById("t_m");
+        const t_s = document.getElementById("t_s");
+        const bt = document.getElementById("bt");
+
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+
+        function updateTime() {
+          seconds++;
+          if (seconds >= 60) {
+            seconds = 0;
+            minutes++;
+            if (minutes >= 60) {
+              minutes = 0;
+              hours++;
+            }
+          }
+
+          t_h.value = hours.toString().padStart(2, "0");
+          t_m.value = minutes.toString().padStart(2, "0");
+          t_s.value = seconds.toString().padStart(2, "0");
+        }
+
+        function startTimer() {
+          setInterval(updateTime, 1000);
+        }
+
+        bt.addEventListener("click", startTimer);
+      });
+    </script> -->
+  </head>
+  <body>
+    <div id="wrapper">
+      <input id="t_h" type="text" value="0" />시
+      <input id="t_m" type="text" value="0" />분
+      <input id="t_s" type="text" value="0" />초
+
+      <button id="bt" onclick="start(); effect();">Start</button>
+    </div>
+  </body>
+</html>

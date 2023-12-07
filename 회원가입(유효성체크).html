@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #wrapper {
+        width: 500px;
+        margin: 0 auto;
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        text-align: center;
+      }
+      input {
+        width: 95%;
+        /* outline: none; */
+      }
+      .email_id {
+        width: 45%;
+      }
+      .birth {
+        width: 45%;
+      }
+    </style>
+    <script>
+      // 입력양식을 이루는 각 컴포넌트안에 제대로
+      // 된 데이터를 넣었는지를 따져보는 과정을
+      // 가리켜 유효성 검사를한다.
+      function regist() {
+        // id를 입력하지 않으면
+        if (form1.id.value == "") {
+          alert("아이디를 입력하세요.");
+          form1.id.focus(); // 포커스 올려놓기
+        } else if (form1.pass.value == "") {
+          alert("비밀번호를 입력하세요.");
+          form1.pass.focus(); // 포커스 올려놓기
+        } else {
+          form1.action = "http://google.com"; // 주소 지정
+          form1.submit(); // 전송
+        }
+      }
+      // 사용자가 1이면 남성, 2이면 여성
+      function getGender() {
+        let v = document.getElementById("jumin2").value;
+        if (v == 1) {
+          document.getElementById("gender").innerText = "남성";
+        } else if (v == 2) {
+          document.getElementById("gender").innerText = "여성";
+        } else {
+          document.getElementById("gender").innerText = "외계인이십니까?";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="wrapper">
+      <!-- id와 name의 공통점은 태그요소를 접근하기 위함 -->
+      <!-- id와 name의 공통점 차이점은 id는 중복불허, name는 중복허용 -->
+      <!-- 특히 name은 서버에 데이터를 전송할때, 변수 역활을 수행 -->
+      <form name="form1" action="">
+        <div>
+          <input type="text" placeholder="ID를 입력하세요" name="id" />
+        </div>
+
+        <div>
+          <input type="text" placeholder="PW를 입력하세요" name="pass" />
+        </div>
+
+        <div>
+          <input class="email_id" type="text" name="email_id" /> @
+          <select name="email_server">
+            <option value="">이메일선택</option>
+            <option value="google.com">구글</option>
+            <option value="naver.com">네이버</option>
+            <option value="daum.net">다음</option>
+          </select>
+        </div>
+
+        <div>
+          <input
+            name="jumin1"
+            class="birth"
+            type="text"
+            placeholder="출생일 ex - 850215"
+          />
+          <input
+            name="jumin2"
+            id="jumin2"
+            class="birth"
+            type="text"
+            placeholder="1******"
+            maxlength="1"
+            onkeyup="getGender()"
+          />
+        </div>
+        <div id="gender">
+          <!-- 여성이시군요
+          남성이시군요 -->
+        </div>
+
+        <div>
+          <!-- html5 의 버튼 태그는 기본적으로
+          전송(submit)기능이 포함되어 잇으므로
+          form태그 안에 둘 경우, 자동전송을 일으킨다.
+          submit 기능 비활성화 시키기 -->
+          <!-- 비활성화는 <button type="button"> type="button"을 추가하면 됨 -->
+          <button type="button" onclick="regist()">회원가입</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

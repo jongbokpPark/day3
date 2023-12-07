@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <!-- <script>
+      let score = prompt("점수를 입렵하세요");
+
+      function getScore() {
+        if (score >= 90) {
+          alert("A학점입니다.");
+        } else if (score >= 80) {
+          alert("B학점입니다.");
+        } else if (score >= 70) {
+          alert("C학점입니다.");
+        } else if (score >= 60) {
+          alert("D학점입니다.");
+        } else if (score >= 59) {
+          alert("F학점입니다.");
+        } else {
+          alert("점수를 입력하세요");
+        }
+        return;
+      }
+      getScore();
+    </script> -->
+
+    <script>
+      let n = parseInt(prompt("당신의 점수를 입력하세요"));
+
+      let msg = "";
+
+      if (n <= 100 && n >= 90) {
+        msg = "A학점";
+      } else if (n <= 90 && n >= 80) {
+        msg = "B학점";
+      } else if (n <= 80 && n >= 70) {
+        msg = "C학점";
+      } else if (n <= 70 && n >= 60) {
+        msg = "D학점";
+      } else if (n <= 60) {
+        msg = "F학점";
+      }
+
+      document.write(msg);
+    </script>
+  </head>
+  <body>
+    <!-- <div>
+      100~90:A학점<br />
+      89~80:B학점<br />
+      79~70:C학점<br />
+      69~60:D학점<br />
+      59~:F학점
+    </div> -->
+  </body>
+</html>

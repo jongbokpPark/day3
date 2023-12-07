@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      #wrapper {
+        width: 600px;
+        height: 600px;
+        margin: 0 auto;
+        background: url("../images/Gallerxy/intro.jpg") no-repeat center center;
+        background-size: cover;
+        position: relative;
+      }
+    </style>
+    <script>
+      let txt;
+      let str; // block 또는 none를 문자열을 담게될 전역변수
+      let flag = true; // block, none 중 어떤 값을 넣을지 결정 짓는 기준
+
+      // 깜박이게 처리할 함수 (자동처리는 아직 고민도하지말자)
+      function blink() {
+        flag = !flag;
+        if (flag) {
+          str = "block";
+        } else {
+          str = "none";
+        }
+        txt.style.display = str;
+      }
+
+      addEventListener("load", function () {
+        txt = document.createElement("div");
+        txt.innerText = "INSERT COIN";
+
+        // 생성된 div 태그를 wrapper의 자식으로 추가!
+        // 문서내의 wrapper라 불리는 id를 갖는 요소에 추가
+        let wrapper = document.getElementById("wrapper");
+        wrapper.style.textAlign = "center";
+        wrapper.style.paddingTop = 230 + "px";
+        wrapper.style.boxSizing = "border-box";
+        wrapper.style.fontSize = 75 + "px";
+        wrapper.style.color = "yellow";
+        wrapper.style.fontWeight = "bold";
+        wrapper.appendChild(txt);
+
+        setInterval("blink()", 500);
+      });
+    </script>
+  </head>
+  <body>
+    <div id="wrapper"></div>
+  </body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      #wrapper {
+        width: 1000px;
+        height: 800px;
+        background: url("../images/Gallerxy/intro.jpg");
+        text-align: center;
+        position: relative;
+      }
+    </style>
+
+    <script>
+      function init() {
+        const wrapper = document.getElementById("wrapper");
+        const h2 = document.createElement("h2");
+
+        h2.innerText = "Insert Coin";
+        h2.style.color = "yellow";
+        h2.style.position = "absolute";
+        h2.style.left = "50%";
+        h2.style.top = "50%";
+        h2.style.transform = "translate(-50%, -50%) rotate(0deg)";
+        h2.style.fontSize = "72px";
+
+        function opacityH2() {
+          h2.style.opacity = `1`;
+          setTimeout(() => {
+            h2.style.opacity = `0`;
+          }, 500);
+        }
+
+        setInterval(opacityH2, 1000);
+
+        wrapper.appendChild(h2);
+      }
+    </script>
+  </head>
+  <body onload="init()">
+    <div id="wrapper"></div>
+  </body>
+</html>
